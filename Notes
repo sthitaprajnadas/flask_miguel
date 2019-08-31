@@ -1,0 +1,11 @@
+mkdir blog_proj
+cd blog_proj
+python3 -m venv blog_env / in python older to 3.4 virtaulenv venv
+
+create init.py , routes.py and app.py
+
+install flask-wtf and create config.py
+
+
+
+
