@@ -18,7 +18,7 @@ def login():
     #for post request
     if form.validate_on_submit():
         flash('logged in as : {}, with remember me {}'.format(form.username.data,form.rememberMe.data))
-        return redirect(url_for('/index'))
+        return redirect(url_for('index'))
 
 
     return render_template('login.html',title='Sign In',form=form)
