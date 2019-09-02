@@ -3,8 +3,15 @@ from sqlalchemy import Column,Integer,String,DateTime,ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from base import Base,engine
+from blog_app import login
+from flask_login import UserMixin
 
-class User(db.Model):
+@login.user_loader
+def user_loader(id):
+    return User.query.get(int(id))
+
+
+class User(UserMixin,db.Model):
     __tablename__ = 'user'
     id=Column(Integer,primary_key=True)
     username=Column(String(64),index=True , unique=True)
@@ -19,6 +26,14 @@ class User(db.Model):
          self.username=username
          self.email=email
          self.password_hash=hash(password)
+    def check_password(self,passw):
+        if hash(passw) == self.password_hash :
+            return True
+        
+        return False
+
+
+
 
 class Post(db.Model):
     __tablename__='post'
